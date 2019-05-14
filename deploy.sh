@@ -14,6 +14,6 @@ git add -A
 git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:proposal-page/api-docs.git master:gh-pages
+git push -f git@github.com:kolinalabs/nodejs-api-pack-docs.git master:gh-pages
 
 cd -

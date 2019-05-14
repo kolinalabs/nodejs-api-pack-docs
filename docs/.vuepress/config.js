@@ -1,6 +1,7 @@
 module.exports = {
   title: "NodeJS ApiPack",
   description: "Just playing around",
+  base: "/nodejs-api-pack-docs/",
   themeConfig: {
     displayAllHeaders: true,
     sidebar: ["/", "/express", "/koa", "/mongoose"],
