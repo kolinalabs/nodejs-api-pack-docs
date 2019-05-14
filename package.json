@@ -1,0 +1,13 @@
+{
+  "name": "@kolinalabs/api-pack-docs",
+  "version": "1.0.0",
+  "author": "Claudinei Machado",
+  "license": "MIT",
+  "scripts": {
+    "start": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "dependencies": {
+    "vuepress-theme-api": "^0.2.1"
+  }
+}
