@@ -506,8 +506,121 @@ schema.statics.ApiPack = function() {
 | `itemsPerPageParameter` | Parameter name to set number of items per page                | `itemsPerPage` |
 | `maxItemsPerPage`       | Maximum number of items per page                              | `null`         |
 
-<!-- ## Extensions
+## Extensions
 
+Extensions allow you to add extra criteria to queries during the execution of the operation.
+
+This package is configured with two standard extensions [`FilterExtension`](mongoose.html#filters)
+and [`PagerExtension`](mongoose.html#pagination), which act exclusively on `collection` type and `get` method operations.
+
+### Custom Extensions
+
+You can add as many custom extensions as you wish using the `apiPack.addExtension` method.
+
+Any added extension must have the `apply(query, operation)` method/function for its functionality to be made available.
+
+`query` and`operation` arguments are not required, but inhibiting them will mean that you do not have access to the operation information,
+nor to the `query` that will be executed after the stack of extensions.
+
+```js
+const MyCustomExtension = {
+  name: "MyCustomExtension",
+  apply(query, operation) {
+    // Your query increment logic
+    // e.g.: query.where('property', 'value')
+  }
+};
+
+apiPack.addExtension(MyCustomExtension);
+```
+
+By default, new extensions are run before the native extensions of the package (`FilterExtension` and `PagerExtension`).
+
+**Example**
+
+Imagine that you want to restrict the results of a project query, added to the criteria of the query, the information regarding the logged in user.
+
+We assume that at this point your `request` or similar already has the information of the logged in user (e.g.: your id).
+
+This would be the suggested format for your query extension:
+
+```js
+const UserReferenceExtension = {
+  name: "UserReferenceExtension",
+  apply(query, operation) {
+    /**
+     * Note: The `api-pack-express` and` api-pack-koa` packages
+     * include the `request` object automatically in the context of the operation.
+     * If you are using a custom route stack, watch out for this detail.
+     * See more about this in the referenced resource documentation.
+     */
+
+    // Retrieve the "userId" information
+    const userId = operation.context.request.user.id;
+    // Add query criteria
+    query.where("userId", userId);
+  }
+};
+```
+
+### Restricting Extension Execution
+
+In some cases it is necessary to restrict the execution of an extension in advance.
+
+Support management allows you to set up at times how an extension can run.
+
+A support configuration can be done by methods, types, functions, and methods of a series of methods and a merge.
+
+By default if the `supports` property of the extension is `not set`(`undefined`), the check defaults to`true`.
+
+**Configuration modes (string/array\<string\>)**
+
+| CONFIG                            | EXPLAIN                                                                     |
+| --------------------------------- | --------------------------------------------------------------------------- |
+| `"get"`                           | method == get                                                               |
+| `"post"`                          | method == post                                                              |
+| `"put"`                           | method == put                                                               |
+| `"delete"`                        | method == delete                                                            |
+| `["get", "post"]`                 | method == get OR method == post                                             |
+| `"item"`                          | type == item                                                                |
+| `"collection"`                    | type == collection                                                          |
+| `["collection", "put"]`           | type == collection OR method == put                                         |
+| `"collection:get"`                | type == collection AND method == get                                        |
+| `["collection:post", "item:get"]` | (type == collection AND method == post) OR (type == item AND method == get) |
+
+**Example**
+
+Let's say that the extension of the above example should only be executed during the collection (`get`) and update (`put`) of the resource.
+
+```js
+const UserReferenceExtension = {
+  name: "UserReferenceExtension",
+  supports: ["collection:get", "put"]
+  apply(query, operation) {
+    // ....
+  }
+};
+```
+
+However, if you want to have more control over the extension's support decision, you can use a function.
+
+The configured function will receive as an argument the `operation` and also the`query` (**in this order!**):
+
+```js
+const UserReferenceExtension = {
+  name: "UserReferenceExtension",
+  supports(operation, query) {
+    // The 'resource' is your model
+    // Apply only if Model is "Project"
+    return operation.resource.modelName === "Project";
+  },
+  apply(query, operation) {
+    // ....
+  }
+};
+```
+
+<!--
 ### FilterExtension
 
 ### PagerExtension

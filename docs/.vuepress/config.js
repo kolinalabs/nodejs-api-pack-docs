@@ -6,7 +6,14 @@ module.exports = {
     displayAllHeaders: true,
     sidebar: ["/", "/express", "/koa", "/mongoose"],
     nav: [
-      { text: "GitHub", link: "https://github.com/kolinalabs/nodejs-api-pack" }
+      {
+        text: "ApiPack(Core)",
+        link: "https://github.com/kolinalabs/nodejs-api-pack"
+      },
+      {
+        text: "ApiPack(Mongoose)",
+        link: "https://github.com/kolinalabs/api-pack-mongoose"
+      }
     ]
   }
 };
