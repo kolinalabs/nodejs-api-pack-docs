@@ -57,7 +57,7 @@ const RouterStack = require("@kolinalabs/api-pack-koa");
 
 // Instantiate + build routes
 const apiPack = new ApiPack(models);
-const routing = apiPack.routing(router);
+const routing = apiPack.routing(RouterStack);
 routing.prefix("/api");
 
 const app = new Koa();
