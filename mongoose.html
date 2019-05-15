@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Mongoose | NodeJS ApiPack</title>
+    <meta name="description" content="Just playing around">
+    
+    
+    <link rel="preload" href="/nodejs-api-pack-docs/assets/css/0.styles.ef02eedd.css" as="style"><link rel="preload" href="/nodejs-api-pack-docs/assets/js/app.292c2ccf.js" as="script"><link rel="preload" href="/nodejs-api-pack-docs/assets/js/7.5e2ffca7.js" as="script"><link rel="prefetch" href="/nodejs-api-pack-docs/assets/js/2.d139c70a.js"><link rel="prefetch" href="/nodejs-api-pack-docs/assets/js/3.7e306c0f.js"><link rel="prefetch" href="/nodejs-api-pack-docs/assets/js/4.d8563f8f.js"><link rel="prefetch" href="/nodejs-api-pack-docs/assets/js/5.177de46b.js"><link rel="prefetch" href="/nodejs-api-pack-docs/assets/js/6.259689d0.js"><link rel="prefetch" href="/nodejs-api-pack-docs/assets/js/8.dde3f876.js">
+    <link rel="stylesheet" href="/nodejs-api-pack-docs/assets/css/0.styles.ef02eedd.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/nodejs-api-pack-docs/" class="home-link router-link-active"><!----> <span class="site-name">NodeJS ApiPack</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="https://github.com/kolinalabs/nodejs-api-pack" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  ApiPack(Core)
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/kolinalabs/api-pack-mongoose" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  ApiPack(Mongoose)
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="https://github.com/kolinalabs/nodejs-api-pack" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  ApiPack(Core)
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/kolinalabs/api-pack-mongoose" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  ApiPack(Mongoose)
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/nodejs-api-pack-docs/" class="sidebar-link">Introduction</a></li><li><a href="/nodejs-api-pack-docs/express.html" class="sidebar-link">ApiPackExpress</a></li><li><a href="/nodejs-api-pack-docs/koa.html" class="sidebar-link">ApiPackKoa</a></li><li><a href="/nodejs-api-pack-docs/mongoose.html" class="active sidebar-link">Mongoose</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/nodejs-api-pack-docs/mongoose.html#with-apipackexpress" class="sidebar-link">With ApiPackExpress</a></li><li class="sidebar-sub-header"><a href="/nodejs-api-pack-docs/mongoose.html#with-apipackkoa" class="sidebar-link">With ApiPackKoa</a></li><li class="sidebar-sub-header"><a href="/nodejs-api-pack-docs/mongoose.html#operations" class="sidebar-link">Operations</a></li><li class="sidebar-sub-header"><a href="/nodejs-api-pack-docs/mongoose.html#persister" class="sidebar-link">Persister</a></li><li class="sidebar-sub-header"><a href="/nodejs-api-pack-docs/mongoose.html#provider" class="sidebar-link">Provider</a></li><li class="sidebar-sub-header"><a href="/nodejs-api-pack-docs/mongoose.html#serializer" class="sidebar-link">Serializer</a></li><li class="sidebar-sub-header"><a href="/nodejs-api-pack-docs/mongoose.html#filters" class="sidebar-link">Filters</a></li><li class="sidebar-sub-header"><a href="/nodejs-api-pack-docs/mongoose.html#pagination" class="sidebar-link">Pagination</a></li><li class="sidebar-sub-header"><a href="/nodejs-api-pack-docs/mongoose.html#extensions" class="sidebar-link">Extensions</a></li></ul></li></ul> </div> <div class="page"> <div class="content"><h1 id="mongoose"><a href="#mongoose" aria-hidden="true" class="header-anchor">#</a> Mongoose</h1> <h2 id="with-apipackexpress"><a href="#with-apipackexpress" aria-hidden="true" class="header-anchor">#</a> With ApiPackExpress</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;express&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> bodyParser <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;body-parser&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> mongoose <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;mongoose&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Connect database</span>
+mongoose<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">MONGODB</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  useNewUrlParser<span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Load your models</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> Project<span class="token punctuation">,</span> Task <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./models&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> models <span class="token operator">=</span> <span class="token punctuation">[</span>Project<span class="token punctuation">,</span> Task<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Import Mongoose ApiPack</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> ApiPack <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;@kolinalabs/api-pack-mongoose&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Import ExpressJS ApiPack (router stack)</span>
+<span class="token keyword">const</span> RouterStack <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;@kolinalabs/api-pack-express&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Instantiate + build routes</span>
+<span class="token keyword">const</span> apiPack <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ApiPack</span><span class="token punctuation">(</span>models<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> routes <span class="token operator">=</span> apiPack<span class="token punctuation">.</span><span class="token function">routing</span><span class="token punctuation">(</span>RouterStack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">&quot;/api&quot;</span><span class="token punctuation">,</span> routes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">APP_PORT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="with-apipackkoa"><a href="#with-apipackkoa" aria-hidden="true" class="header-anchor">#</a> With ApiPackKoa</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> Koa <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;koa&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> bodyParser <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;koa-bodyparser&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> mongoose <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;mongoose&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Connect database</span>
+mongoose<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">MONGODB</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  useNewUrlParser<span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Load your models</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> Project<span class="token punctuation">,</span> Task <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./models&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> models <span class="token operator">=</span> <span class="token punctuation">[</span>Project<span class="token punctuation">,</span> Task<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Import Mongoose ApiPack</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> ApiPack <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;@kolinalabs/api-pack-mongoose&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Import KoaJS ApiPack (router stack)</span>
+<span class="token keyword">const</span> RouterStack <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;@kolinalabs/api-pack-koa&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Instantiate + build routes</span>
+<span class="token keyword">const</span> apiPack <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ApiPack</span><span class="token punctuation">(</span>models<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> routing <span class="token operator">=</span> apiPack<span class="token punctuation">.</span><span class="token function">routing</span><span class="token punctuation">(</span>RouterStack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+routing<span class="token punctuation">.</span><span class="token function">prefix</span><span class="token punctuation">(</span><span class="token string">&quot;/api&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Koa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token function">bodyParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>routing<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">APP_PORT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="model-configuration"><a href="#model-configuration" aria-hidden="true" class="header-anchor">#</a> Model Configuration</h3> <h4 id="easy"><a href="#easy" aria-hidden="true" class="header-anchor">#</a> Easy</h4> <p>By default, it is not necessary to make any special configuration in the model so that it works correctly with ApiPack.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> mongoose <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;mongoose&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> TaskSchema <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">mongoose<span class="token punctuation">.</span>Schema</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  title<span class="token punctuation">:</span> String<span class="token punctuation">,</span>
+  status<span class="token punctuation">:</span> String<span class="token punctuation">,</span>
+  note<span class="token punctuation">:</span> String<span class="token punctuation">,</span>
+  priority<span class="token punctuation">:</span> Number<span class="token punctuation">,</span>
+  closed<span class="token punctuation">:</span> Boolean<span class="token punctuation">,</span>
+  openedAt<span class="token punctuation">:</span> Date<span class="token punctuation">,</span>
+  closedAt<span class="token punctuation">:</span> Date
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> Task <span class="token operator">=</span> mongoose<span class="token punctuation">.</span><span class="token function">model</span><span class="token punctuation">(</span><span class="token string">&quot;Task&quot;</span><span class="token punctuation">,</span> TaskSchema<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h4 id="advanced"><a href="#advanced" aria-hidden="true" class="header-anchor">#</a> Advanced</h4> <p>To configure advanced mode, add the static <code>ApiPack()</code> method to your model.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> ProjectSchema <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">mongoose<span class="token punctuation">.</span>Schema</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    title<span class="token punctuation">:</span> String<span class="token punctuation">,</span>
+    description<span class="token punctuation">:</span> String<span class="token punctuation">,</span>
+    amount<span class="token punctuation">:</span> Number<span class="token punctuation">,</span>
+    priority<span class="token punctuation">:</span> Number<span class="token punctuation">,</span>
+    isPrivate<span class="token punctuation">:</span> Boolean<span class="token punctuation">,</span>
+    isLocked<span class="token punctuation">:</span> Boolean<span class="token punctuation">,</span>
+    status<span class="token punctuation">:</span> String
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    timestamps<span class="token punctuation">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// ApiPack configuration</span>
+ProjectSchema<span class="token punctuation">.</span>statics<span class="token punctuation">.</span><span class="token function-variable function">ApiPack</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">&quot;AdvancedProject&quot;</span><span class="token punctuation">,</span>
+    description<span class="token punctuation">:</span> <span class="token string">&quot;This is my project with advanced mode.&quot;</span><span class="token punctuation">,</span>
+    operations<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      paginate<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      retrieve<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      create<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      update<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      remove<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token comment">// disable operation</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    pagination<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      enabled<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token comment">// disable pagination</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    filters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      boolean<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;isPrivate&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;isLocked&quot;</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      date<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;createdAt&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;updatedAt&quot;</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      exists<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;status&quot;</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      numeric<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;amount&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;priority&quot;</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      order<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;_id&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;amount&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;priority&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;title&quot;</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      range<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;amount&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;priority&quot;</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      search<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;title&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;description&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;status&quot;</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> Project <span class="token operator">=</span> mongoose<span class="token punctuation">.</span><span class="token function">model</span><span class="token punctuation">(</span><span class="token string">&quot;Project&quot;</span><span class="token punctuation">,</span> ProjectSchema<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="operations"><a href="#operations" aria-hidden="true" class="header-anchor">#</a> Operations</h2> <p>By default, five operations are active in ApiPack:</p> <p>In this example, we assume that there is a <code>Project</code> resource</p> <table><thead><tr><th>NAME</th> <th>TYPE</th> <th>METHOD</th> <th>PATH</th></tr></thead> <tbody><tr><td><code>paginate</code></td> <td><code>collection</code></td> <td><code>GET</code></td> <td><code>/projects</code></td></tr> <tr><td><code>create</code></td> <td><code>collection</code></td> <td><code>POST</code></td> <td><code>/projects</code></td></tr> <tr><td><code>retrieve</code></td> <td><code>item</code></td> <td><code>GET</code></td> <td><code>/projects/:id</code></td></tr> <tr><td><code>update</code></td> <td><code>item</code></td> <td><code>PUT</code></td> <td><code>/projects/:id</code></td></tr> <tr><td><code>remove</code></td> <td><code>item</code></td> <td><code>DELETE</code></td> <td><code>/projects/:id</code></td></tr></tbody></table> <p><strong>Disabling operations:</strong></p> <p>Method 1:</p> <div class="language-js extra-class"><pre class="language-js"><code>schema<span class="token punctuation">.</span>statics<span class="token punctuation">.</span><span class="token function-variable function">ApiPack</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    operations<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;paginate&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;retrieve&quot;</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>Method 2:</p> <div class="language-js extra-class"><pre class="language-js"><code>schema<span class="token punctuation">.</span>statics<span class="token punctuation">.</span><span class="token function-variable function">ApiPack</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    operations<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      paginate<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      retrieve<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      create<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      update<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      remove<span class="token punctuation">:</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>In the above examples, the <code>create</code>,<code>update</code> and <code>remove</code> operations are disabled.</p> <h2 id="persister"><a href="#persister" aria-hidden="true" class="header-anchor">#</a> Persister</h2> <p>This package provides the persistence performer for ApiPack operations.</p> <p>It is already configured with the <code>persist()</code> and <code>remove()</code> methods used for add, update and remove operations.</p> <h2 id="provider"><a href="#provider" aria-hidden="true" class="header-anchor">#</a> Provider</h2> <p>The data provider acts in the <code>READ</code> and <code>DESERIALIZE</code> steps.</p> <p>This mechanism makes it possible to recover data in one of the following ways:</p> <ul><li>Item: Retrieved when the operation has an identifier (eg: retrieve, update or delete)</li> <li>Collection: When it does not have an item identifier (paginated or not)</li> <li>Instance: Used to initialize an instance of the resource associated with the operation</li></ul> <h2 id="serializer"><a href="#serializer" aria-hidden="true" class="header-anchor">#</a> Serializer</h2> <p>Although not strictly necessary, a simple serializer is provided with the package,
+it has the serialization and data deserialization functionality for the operation.</p> <p>However, you can replace the serializer when needed, for a custom:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> MyCustomSerializer <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function">serialize</span><span class="token punctuation">(</span><span class="token parameter">operation</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Your custom logic to add/remove/change</span>
+    <span class="token comment">// &quot;operation.data&quot; properties before response</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">deserialize</span><span class="token punctuation">(</span><span class="token parameter">operation</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Your custom logic to populate resource instance (operation.data)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Override apiPack default serializer</span>
+apiPack<span class="token punctuation">.</span>serializers<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> MyCustomSerializer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="filters"><a href="#filters" aria-hidden="true" class="header-anchor">#</a> Filters</h2> <p>By default, all ApiPack filters are disabled, to use them you must activate each one separately.</p> <h3 id="boolean"><a href="#boolean" aria-hidden="true" class="header-anchor">#</a> Boolean</h3> <p>Used to filter fields with boolean values.</p> <p>Syntax: <code>?property=&lt;true|false|1|0|on|off|yes|no&gt;</code></p> <blockquote><p>To maintain compatibility with later version analyzes, it is recommended to use this filter with one of the following values:
+true/false/1/0</p></blockquote> <p>Configuration:</p> <div class="language-js extra-class"><pre class="language-js"><code>schema<span class="token punctuation">.</span>statics<span class="token punctuation">.</span><span class="token function-variable function">ApiPack</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    filters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      boolean<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;enabled&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;isLocked&quot;</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>Example: <code>/projects?isLocked=true</code></p> <h3 id="date"><a href="#date" aria-hidden="true" class="header-anchor">#</a> Date</h3> <p>Used to filter results based on a date intervals.</p> <table><thead><tr><th>STRATEGY</th> <th>EQUIVALENT TO</th></tr></thead> <tbody><tr><td><code>after</code></td> <td><code>&gt;= value</code></td></tr> <tr><td><code>before</code></td> <td><code>&lt;= value</code></td></tr> <tr><td><code>strict_after</code></td> <td><code>&gt; value</code></td></tr> <tr><td><code>strict_before</code></td> <td><code>&lt; value</code></td></tr></tbody></table> <p>Syntax: <code>?property[&lt;after|before|strict_after|strict_before&gt;]=value</code></p> <p>Configuration:</p> <div class="language-js extra-class"><pre class="language-js"><code>schema<span class="token punctuation">.</span>statics<span class="token punctuation">.</span><span class="token function-variable function">ApiPack</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    filters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      date<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;createdAt&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;updatedAt&quot;</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>Example: <code>/projects?createdAt[before]=2019-05-10&amp;updatedAt[after]=2019-05-20</code></p> <p><strong>NULL Management Strategies</strong></p> <table><thead><tr><th>STRATEGY</th> <th>DESCRIPTION</th></tr></thead> <tbody><tr><td><code>include_null_after</code></td> <td>Consider items as youngest</td></tr> <tr><td><code>include_null_before</code></td> <td>Consider items as oldest</td></tr> <tr><td><code>exclude_null</code></td> <td>Exclude items</td></tr> <tr><td><code>include_null</code></td> <td>Include items always</td></tr></tbody></table> <p>Configuration:</p> <div class="language-js extra-class"><pre class="language-js"><code>schema<span class="token punctuation">.</span>statics<span class="token punctuation">.</span><span class="token function-variable function">ApiPack</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    filters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      date<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          createdAt<span class="token punctuation">:</span> <span class="token string">&quot;include_null&quot;</span><span class="token punctuation">,</span>
+          updatedAt<span class="token punctuation">:</span> <span class="token string">&quot;include_null_before&quot;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="exists"><a href="#exists" aria-hidden="true" class="header-anchor">#</a> Exists</h3> <p>Used to filter results with null or non-null values.</p> <p>Syntax: <code>?property[exists]=&lt;true|false|1|0&gt;</code></p> <p>Configuration:</p> <div class="language-js extra-class"><pre class="language-js"><code>schema<span class="token punctuation">.</span>statics<span class="token punctuation">.</span><span class="token function-variable function">ApiPack</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    filters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      exists<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;description&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;status&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;note&quot;</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>Example: <code>/projects?status[exists]=true&amp;note[exists]=false</code></p> <h3 id="numeric"><a href="#numeric" aria-hidden="true" class="header-anchor">#</a> Numeric</h3> <p>This filter allows searching on properties with numerical values.</p> <p>Syntax: <code>?property=&lt;int|float&gt;</code></p> <p>Configuration:</p> <div class="language-js extra-class"><pre class="language-js"><code>schema<span class="token punctuation">.</span>statics<span class="token punctuation">.</span><span class="token function-variable function">ApiPack</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    filters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      numeric<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;amount&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;priority&quot;</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>Example: <code>/projects?priority=25</code></p> <h3 id="order"><a href="#order" aria-hidden="true" class="header-anchor">#</a> Order</h3> <p>Lets you sort a collection of results based on the configured properties.</p> <p>Syntax: <code>?order[property]=&lt;asc|desc|1|-1&gt;</code></p> <p>Configuration:</p> <div class="language-js extra-class"><pre class="language-js"><code>schema<span class="token punctuation">.</span>statics<span class="token punctuation">.</span><span class="token function-variable function">ApiPack</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    filters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      order<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;amount&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;priority&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;title&quot;</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>Example: <code>/projects?order[title]=desc&amp;order[priority]=asc</code></p> <p>By default, when a direction is not informed, the computer assumes as ascending:</p> <p>Example: <code>/projects?order[amount]&amp;order[priority]</code></p> <p>The default direction can be set in a custom filter setting by using the <code>defaultDirection</code> property</p> <div class="language-js extra-class"><pre class="language-js"><code>schema<span class="token punctuation">.</span>statics<span class="token punctuation">.</span><span class="token function-variable function">ApiPack</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    filters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      order<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          amount<span class="token punctuation">:</span> <span class="token string">&quot;asc&quot;</span><span class="token punctuation">,</span>
+          priority<span class="token punctuation">:</span> <span class="token string">&quot;desc&quot;</span><span class="token punctuation">,</span>
+          title<span class="token punctuation">:</span> <span class="token string">&quot;asc&quot;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="range"><a href="#range" aria-hidden="true" class="header-anchor">#</a> Range</h3> <p>This filter is used for comparisons at the following levels:</p> <ul><li>lower than (lt)</li> <li>greather than (gt)</li> <li>lower than or equal (lte)</li> <li>greather than or equal (gte)</li></ul> <p>Syntax: <code>?property[&lt;lt|gt|lte|gte|between&gt;]=value</code></p> <p>Configuration:</p> <div class="language-js extra-class"><pre class="language-js"><code>schema<span class="token punctuation">.</span>statics<span class="token punctuation">.</span><span class="token function-variable function">ApiPack</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    filters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      range<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;amount&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;priority&quot;</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>Example: <code>/projects?priority[gte]=10&amp;amount[between]=500..800</code></p> <p>In the example, <code>between</code> strategy is equivalent to <code>/projects?amount[gt]=500&amp;amount[lt]=800</code></p> <h3 id="search"><a href="#search" aria-hidden="true" class="header-anchor">#</a> Search</h3> <p>This filter provides the possibility of textual search in four different strategies:</p> <table><thead><tr><th>STRATEGY</th> <th>SQL EQUIVALENT</th></tr></thead> <tbody><tr><td><code>partial</code></td> <td><code>LIKE %text%</code></td></tr> <tr><td><code>start</code></td> <td><code>LIKE text%</code></td></tr> <tr><td><code>end</code></td> <td><code>LIKE %text</code></td></tr> <tr><td><code>word_start</code></td> <td><code>LIKE text% OR LIKE % text%</code></td></tr></tbody></table> <p>The above settings are <code>case sensitive</code>, ie a query <code>?title=foo</code> will be interpreted differently than <code>title=Foo</code>.</p> <p>To allow case insensitive queries, include the prefix <code>i</code> in the configured strategies (e.g: <code>ipartial</code>, <code>iexact</code>).</p> <p>Syntax: <code>?property1=foo&amp;property2=bar</code></p> <p>Configuration:</p> <div class="language-js extra-class"><pre class="language-js"><code>schema<span class="token punctuation">.</span>statics<span class="token punctuation">.</span><span class="token function-variable function">ApiPack</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    filters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      search<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        properties<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          title<span class="token punctuation">:</span> <span class="token string">&quot;ipartial&quot;</span><span class="token punctuation">,</span>
+          description<span class="token punctuation">:</span> <span class="token string">&quot;partial&quot;</span><span class="token punctuation">,</span>
+          status<span class="token punctuation">:</span> <span class="token string">&quot;exact&quot;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="pagination"><a href="#pagination" aria-hidden="true" class="header-anchor">#</a> Pagination</h2> <p>By default, this feature provides a built-in pager, also with default settings.
+However, you can customize both your settings and their features if necessary.</p> <p>The complete paging setup example:</p> <div class="language-js extra-class"><pre class="language-js"><code>schema<span class="token punctuation">.</span>statics<span class="token punctuation">.</span><span class="token function-variable function">ApiPack</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    pagination<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      enabled<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      pageParameter<span class="token punctuation">:</span> <span class="token string">&quot;pg&quot;</span><span class="token punctuation">,</span>
+      clientEnabled<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      enabledParameter<span class="token punctuation">:</span> <span class="token string">&quot;paging&quot;</span><span class="token punctuation">,</span>
+      itemsPerPage<span class="token punctuation">:</span> <span class="token number">50</span><span class="token punctuation">,</span>
+      clientItemsPerPage<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      itemsPerPageParameter<span class="token punctuation">:</span> <span class="token string">&quot;per_page&quot;</span><span class="token punctuation">,</span>
+      maxItemsPerPage<span class="token punctuation">:</span> <span class="token number">100</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><table><thead><tr><th>PARAMETER</th> <th>DESCRIPTION</th> <th>DEFAULT</th></tr></thead> <tbody><tr><td><code>enabled</code></td> <td>Enable/disable pagination</td> <td><code>true</code></td></tr> <tr><td><code>pageParameter</code></td> <td>Page parameter name</td> <td><code>page</code></td></tr> <tr><td><code>clientEnabled</code></td> <td>Allow to enable/disable pager via client-side (GET parameter)</td> <td><code>false</code></td></tr> <tr><td><code>enabledParameter</code></td> <td>Parameter name to enable/disable pagination</td> <td><code>pagination</code></td></tr> <tr><td><code>itemsPerPage</code></td> <td>Set number of items per page</td> <td><code>30</code></td></tr> <tr><td><code>clientItemsPerPage</code></td> <td>Allow change <code>itemsPerPage</code> via client-side (GET parameter)</td> <td><code>false</code></td></tr> <tr><td><code>itemsPerPageParameter</code></td> <td>Parameter name to set number of items per page</td> <td><code>itemsPerPage</code></td></tr> <tr><td><code>maxItemsPerPage</code></td> <td>Maximum number of items per page</td> <td><code>null</code></td></tr></tbody></table> <h2 id="extensions"><a href="#extensions" aria-hidden="true" class="header-anchor">#</a> Extensions</h2> <p>Extensions allow you to add extra criteria to queries during the execution of the operation.</p> <p>This package is configured with two standard extensions <a href="/nodejs-api-pack-docs/mongoose.html#filters"><code>FilterExtension</code></a>
+and <a href="/nodejs-api-pack-docs/mongoose.html#pagination"><code>PagerExtension</code></a>, which act exclusively on <code>collection</code> type and <code>get</code> method operations.</p> <h3 id="custom-extensions"><a href="#custom-extensions" aria-hidden="true" class="header-anchor">#</a> Custom Extensions</h3> <p>You can add as many custom extensions as you wish using the <code>apiPack.addExtension</code> method.</p> <p>Any added extension must have the <code>apply(query, operation)</code> method/function for its functionality to be made available.</p> <p><code>query</code> and<code>operation</code> arguments are not required, but inhibiting them will mean that you do not have access to the operation information,
+nor to the <code>query</code> that will be executed after the stack of extensions.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> MyCustomExtension <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">&quot;MyCustomExtension&quot;</span><span class="token punctuation">,</span>
+  <span class="token function">apply</span><span class="token punctuation">(</span><span class="token parameter">query<span class="token punctuation">,</span> operation</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Your query increment logic</span>
+    <span class="token comment">// e.g.: query.where('property', 'value')</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+apiPack<span class="token punctuation">.</span><span class="token function">addExtension</span><span class="token punctuation">(</span>MyCustomExtension<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>By default, new extensions are run before the native extensions of the package (<code>FilterExtension</code> and <code>PagerExtension</code>).</p> <p><strong>Example</strong></p> <p>Imagine that you want to restrict the results of a project query, added to the criteria of the query, the information regarding the logged in user.</p> <p>We assume that at this point your <code>request</code> or similar already has the information of the logged in user (e.g.: your id).</p> <p>This would be the suggested format for your query extension:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> UserReferenceExtension <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">&quot;UserReferenceExtension&quot;</span><span class="token punctuation">,</span>
+  <span class="token function">apply</span><span class="token punctuation">(</span><span class="token parameter">query<span class="token punctuation">,</span> operation</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * Note: The `api-pack-express` and` api-pack-koa` packages
+     * include the `request` object automatically in the context of the operation.
+     * If you are using a custom route stack, watch out for this detail.
+     * See more about this in the referenced resource documentation.
+     */</span>
+
+    <span class="token comment">// Retrieve the &quot;userId&quot; information</span>
+    <span class="token keyword">const</span> userId <span class="token operator">=</span> operation<span class="token punctuation">.</span>context<span class="token punctuation">.</span>request<span class="token punctuation">.</span>user<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+    <span class="token comment">// Add query criteria</span>
+    query<span class="token punctuation">.</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token string">&quot;userId&quot;</span><span class="token punctuation">,</span> userId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="restricting-extension-execution"><a href="#restricting-extension-execution" aria-hidden="true" class="header-anchor">#</a> Restricting Extension Execution</h3> <p>In some cases it is necessary to restrict the execution of an extension in advance.</p> <p>Support management allows you to set up at times how an extension can run.</p> <p>A support configuration can be done by methods, types, functions, and methods of a series of methods and a merge.</p> <p>By default if the <code>supports</code> property of the extension is <code>not set</code>(<code>undefined</code>), the check defaults to<code>true</code>.</p> <p><strong>Configuration modes (string/array&lt;string&gt;)</strong></p> <table><thead><tr><th>CONFIG</th> <th>EXPLAIN</th></tr></thead> <tbody><tr><td><code>&quot;get&quot;</code></td> <td>method == get</td></tr> <tr><td><code>&quot;post&quot;</code></td> <td>method == post</td></tr> <tr><td><code>&quot;put&quot;</code></td> <td>method == put</td></tr> <tr><td><code>&quot;delete&quot;</code></td> <td>method == delete</td></tr> <tr><td><code>[&quot;get&quot;, &quot;post&quot;]</code></td> <td>method == get OR method == post</td></tr> <tr><td><code>&quot;item&quot;</code></td> <td>type == item</td></tr> <tr><td><code>&quot;collection&quot;</code></td> <td>type == collection</td></tr> <tr><td><code>[&quot;collection&quot;, &quot;put&quot;]</code></td> <td>type == collection OR method == put</td></tr> <tr><td><code>&quot;collection:get&quot;</code></td> <td>type == collection AND method == get</td></tr> <tr><td><code>[&quot;collection:post&quot;, &quot;item:get&quot;]</code></td> <td>(type == collection AND method == post) OR (type == item AND method == get)</td></tr></tbody></table> <p><strong>Example</strong></p> <p>Let's say that the extension of the above example should only be executed during the collection (<code>get</code>) and update (<code>put</code>) of the resource.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> UserReferenceExtension <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">&quot;UserReferenceExtension&quot;</span><span class="token punctuation">,</span>
+  supports<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;collection:get&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;put&quot;</span><span class="token punctuation">]</span>
+  <span class="token function">apply</span><span class="token punctuation">(</span><span class="token parameter">query<span class="token punctuation">,</span> operation</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ....</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>However, if you want to have more control over the extension's support decision, you can use a function.</p> <p>The configured function will receive as an argument the <code>operation</code> and also the<code>query</code> (<strong>in this order!</strong>):</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> UserReferenceExtension <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">&quot;UserReferenceExtension&quot;</span><span class="token punctuation">,</span>
+  <span class="token function">supports</span><span class="token punctuation">(</span><span class="token parameter">operation<span class="token punctuation">,</span> query</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// The 'resource' is your model</span>
+    <span class="token comment">// Apply only if Model is &quot;Project&quot;</span>
+    <span class="token keyword">return</span> operation<span class="token punctuation">.</span>resource<span class="token punctuation">.</span>modelName <span class="token operator">===</span> <span class="token string">&quot;Project&quot;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">apply</span><span class="token punctuation">(</span><span class="token parameter">query<span class="token punctuation">,</span> operation</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ....</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/nodejs-api-pack-docs/koa.html" class="prev">
+          ApiPackKoa
+        </a></span> <!----></p></div> </div> <!----></div></div>
+    <script src="/nodejs-api-pack-docs/assets/js/app.292c2ccf.js" defer></script><script src="/nodejs-api-pack-docs/assets/js/7.5e2ffca7.js" defer></script>
+  </body>
+</html>
